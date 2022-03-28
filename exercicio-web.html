@@ -1,0 +1,68 @@
+<html>
+  <body>
+    Olá, mundo!
+
+    <input type="number" id="entradaValor" placeholder="valor" />
+
+    <button id="botaoInserir" onclick="inserirElemento()">Inserir</button>
+    <button id="botaoInserirInicio">Inserir Inicio</button>
+    <button id="limparArray">Limpar</button>
+    <hr />
+    <input type="number" id="entradaIndice" placeholder="indice" />
+    <button id="botaoRemover">Remover</button>
+    <hr />
+    <button id="exibirArray" onclick="exibirElementosDoArray()">
+      Exibir Array
+    </button>
+    <ol id="listaArray"></ol>
+
+    <script>
+      let entradaValor = document.getElementById("entradaValor");
+      let botaoInserir = document.getElementById("botaoInserir");
+      let botaoInserirInicio = document.getElementById("botaoInserirInicio");
+      let limparVetor = document.getElementById("limparArray");
+      let listaArray = document.getElementById("listaArray");
+      let entradaIndice = document.getElementById("entradaIndice");
+      let botaoRemover = document.getElementById("botaoRemover");
+
+      let array = [];
+
+      function inserirElemento() {
+        array.push(entradaValor.value);
+        entradaValor.value = "";
+        entradaValor.focus();
+        console.log("executando");
+      }
+
+      botaoInserirInicio.onclick = function inserirElementoInicio() {
+        array.unshift(entradaValor.value);
+        entradaValor.value = "";
+        entradaValor.focus();
+        console.log("rodando");
+      };
+
+      limparVetor.addEventListener("click", function () {
+        array = [];
+      });
+
+      function exibirElementosDoArray() {
+        let listaHtml = "";
+
+        array.sort();
+
+        array.forEach(function (e) {
+          listaHtml += `<li> ${e} </li>`;
+        });
+
+        listaArray.innerHTML = listaHtml;
+      }
+
+      botaoRemover.onclick = function removerPorIndice() {
+        if (entradaIndice.value > array.length) alert("indice invalido");
+        else {
+          array.splice(entradaIndice.value, 1);
+        }
+      };
+    </script>
+  </body>
+</html>
